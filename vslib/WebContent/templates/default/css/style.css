@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header, nav, section, article, aside, footer {
+    display: block;
+}
+
+body{
+    font: 80% "Trebuchet MS", sans-serif;
+    margin: 50px;
+    margin-top: 25px;
+    line-height: 150%;
+}
+.demoHeaders {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.contentTitle {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#dialog-link {
+    padding: .4em 1em .4em 20px;
+    text-decoration: none;
+    position: relative;
+}
+#dialog-link span.ui-icon {
+    margin: 0 5px 0 0;
+    position: absolute;
+    left: .2em;
+    top: 50%;
+    margin-top: -8px;
+}
+#icons {
+    margin: 0;
+    padding: 0;
+}
+#icons li {
+    margin: 2px;
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+}
+#icons span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+.fakewindowcontain .ui-widget-overlay {
+    position: absolute;
+}
+
+#wrapper {
+    width: 100%;
+    min-width: 1000px;
+}
+
+
+/* Header
+-----------------------------------------------------------------------------*/
+#header {
+    height: 100px;
+}
+
+
+/* Middle
+-----------------------------------------------------------------------------*/
+#middle {
+    width: 100%;
+    height: 1%;
+    position: relative;
+}
+#middle:after {
+    content: '.';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+}
+#container {
+    width: 100%;
+    float: left;
+    overflow: hidden;
+}
+#content {
+    padding: 0 0 0 270px;
+    padding-top: 10px;
+}
+
+
+/* Sidebar Left
+-----------------------------------------------------------------------------*/
+#sideLeft {
+    float: left;
+    width: 250px;
+    margin-left: -100%;
+    position: relative;
+    min-height: 500px;
+}
+
+/* Footer
+-----------------------------------------------------------------------------*/
+#footer {
+    height: 75px;
+    text-align: right;
+}
+
+/* My Styles
+-----------------------------------------------------------------------------*/
+#logo {
+    height: 50px;
+    padding-left: 20px;
+    padding-top: 10px;
+    font-family:"Times New Roman", Times, serif;
+    font-size: 30px;
+    color: #008080;
+}
+
+#topmenu {
+    text-align: right;
+}
+
+#topmenu ul {
+    list-style-type: none;
+}
+
+#topmenu ul li {
+    display: inline;
+}
+
+ul.tmenu {
+    padding-top:10px;
+    list-style-type: none;
+}
+
+ul.tmenu li {
+    display: inline;
+}
+
+span.errorMsg {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left:15px;
+    position: relative;
+    color: #880000;
+    font-style: italic;
+}
+
+.inputsmall { width: 100px; }
+.inputbig {width: 200px; }
+.inputlarge {width: 400px;}
+.required { background-color: #FFFF99; }
+
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+input, select.myform, textarea {
+    vertical-align: middle;
+    border: solid 1px #B8B8B8;
+    line-height: 120%;
+    padding: 1px 1px 1px 1px;
+}
+
+table.vsform { margin: 10px; padding: 5px; }
+
+table.vsform tbody tr { }
+table.vsform tbody tr td { vertical-align: top; padding-top: 3px; padding-right: 10px; min-width: 150px;}
+
+table.vsform tbody tr td label { display: block; font-weight: bold; width: 150px;}
+
+table.vsform tbody tr td input[type=text], table.vsform tbody tr td select.myform, table.vsform tbody tr td textarea { 
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: .2em;
+}
+
+table.vsform tbody tr td input[type=password] { 
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: .2em;
+}
+
+h1 { font-size: 1.2em; margin: .6em 0; }
+
+div#users-contain { width: 350px; margin: 20px 0; }
+
+div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+
+div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+
+.dataTable {
+    width: 95%;
+    border: solid 1px #B8B8B8;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 5px;
+}
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #F0F0F0;
+}
+
+table.dataTable tbody tr td {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 2px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 150%;
+}
+
+table.dataTable thead tr th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: top;
+    background-color: #F0F0F0;
+    border-bottom: solid 1px #B8B8B8;
+    line-height: 150%;
+}
+
+table.dataTable tfoot tr td {
+    padding-top: 5px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    text-align: right;
+    vertical-align: center;
+    border-top: solid 1px #B8B8B8;
+    line-height: 150%;
+}
+
+.titleTop {
+    z-index: 1; 
+    position: fixed; 
+    top: 0px; 
+    left: 400px; 
+    background-color: #F0F0F0; 
+    font-weight: bold; 
+    text-align: center;
+    width: 775px; 
+    letter-spacing: 2px; 
+    border-bottom: 1px solid #F0F0F0; 
+    border-left: 1px solid #F0F0F0; 
+    border-right: 1px solid #F0F0F0; 
+    border-radius: 16px; 
+    padding: 10px;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+
+div.helpDocument {
+    margin-top: 50px;
+    padding-left: 20px;
+    line-height: 150%;
+    font-size: 14px;
+    font-stretch: extra-expanded;
+}
+
+div.helpDocument ul {
+    margin-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div.helpDocument ul li {
+    margin-top: 10px;
+}

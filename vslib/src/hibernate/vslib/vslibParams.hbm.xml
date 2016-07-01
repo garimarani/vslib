@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping default-lazy="false">
+
+	<class name="org.vsfamily.vslib.common.domain.VslibParams" table="org_vsfamily_vslib_params">
+		<id name="id" column="f_id" type="long">
+			<generator class="increment" />
+		</id>
+		<property
+			name="enableEmail"
+			column="f_enable_email"
+			type="boolean"
+			/>
+		<property
+			name="host"
+			column="f_host"
+			type="string"
+			length="100"
+			/>
+		<property
+			name="port"
+			column="f_port"
+			type="string"
+			length="5"
+			/>
+		<property
+			name="username"
+			column="f_username"
+			type="string"
+			length="100"
+			/>
+		<property
+			name="password"
+			column="f_password"
+			type="string"
+			length="100"
+			/>
+		<property
+			name="smtpAuthEnable"
+			column="f_smtp_auth_enable"
+			type="boolean"
+			/>
+		<property
+			name="sslOrTls"
+			column="f_ssl_or_tls"
+			type="string"
+			length="10"
+			/>
+		<property
+			name="fromEmail"
+			column="f_from_email"
+			type="string"
+			length="100"
+			/>
+			
+		<property
+			name="addDate"
+			column="f_add_date"
+			not-null="true"
+			/>
+		<property
+			name="updateDate"
+			column="f_update_date"
+			not-null="true"
+			/>
+		<property 
+			name="recordAddedBy"
+			column="f_record_added_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+		<property 
+			name="recordUpdatedBy"
+			column="f_record_updated_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+	</class>
+</hibernate-mapping>

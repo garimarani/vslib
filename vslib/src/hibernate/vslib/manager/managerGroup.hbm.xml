@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping default-lazy="false">
+
+	<class name="org.vsfamily.vslib.manager.domain.ManagerGroup" table="org_vsfamily_vslib_manager_manager_group">
+		<id name="id" column="f_id" type="long">
+			<generator class="increment" />
+		</id>
+		<properties name="uk_manager_group" unique="true">
+			<many-to-one
+				name="group"
+				column="f_group"
+				class="org.vsfamily.vslib.manager.domain.VslibGroup"
+				not-null="true"
+				/>
+			<many-to-one
+				name="manager"
+				column="f_manager"
+				class="org.vsfamily.vslib.manager.domain.Manager"
+				not-null="true"
+				/>
+		</properties>
+			
+		<property
+			name="addDate"
+			column="f_add_date"
+			not-null="true"
+			/>
+		<property
+			name="updateDate"
+			column="f_update_date"
+			not-null="true"
+			/>
+		<property 
+			name="recordAddedBy"
+			column="f_record_added_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+		<property 
+			name="recordUpdatedBy"
+			column="f_record_updated_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+	</class>
+</hibernate-mapping>

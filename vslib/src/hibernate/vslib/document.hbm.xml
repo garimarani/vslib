@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping default-lazy="false">
+
+	<class name="org.vsfamily.vslib.common.domain.Document" table="org_vsfamily_vslib_document">
+		<id name="id" column="f_id" type="long">
+			<generator class="increment" />
+		</id>
+		<property
+			name="uniformTitle"
+			column="f_uniform_title"
+			type="string"
+			not-null="true"
+			length="2000"
+			/>
+		<property
+			name="primaryAuthor"
+			column="f_primary_author"
+			type="string"
+			not-null="true"
+			length="2000"
+			/>
+		<property
+			name="secondaryAuthors"
+			column="f_secondary_authors"
+			type="text"
+			length="1000000000"
+			/>
+		<property
+			name="isbn"
+			column="f_isbn"
+			type="string"
+			length="20"
+			/>
+		<property
+			name="edition"
+			column="f_edition"
+			type="string"
+			length="100"
+			/>
+		<property
+			name="publicationYear"
+			column="f_publication_year"
+			type="string"
+			length="20"
+			/>
+		<property
+			name="coverPrice"
+			column="f_cover_price"
+			type="string"
+			length="20"
+			/>
+		<property
+			name="publisher"
+			column="f_publisher"
+			type="string"
+			length="500"
+			/>
+		<property
+			name="seriesStatement"
+			column="f_series_statement"
+			type="string"
+			length="2000"
+			/>
+		<property
+			name="copyright"
+			column="f_copyright"
+			type="string"
+			length="2000"
+			/>
+		<property
+			name="summary"
+			column="f_summary"
+			type="text"
+			length="1000000000"
+			/>
+		<property
+			name="keywords"
+			column="f_keywords"
+			type="text"
+			length="1000000000"
+			/>
+		<property
+			name="biblio"
+			column="f_biblio"
+			type="text"
+			length="1000000000"
+			/>
+		<property
+			name="biblioType"
+			column="f_biblio_type"
+			type="string"
+			length="20"
+			/>
+		<set name="items" order-by="f_barcode_number">
+			<key column="f_document"/>
+         	<one-to-many class="org.vsfamily.vslib.common.domain.Item"/>
+		</set>
+			
+		<property
+			name="addDate"
+			column="f_add_date"
+			not-null="true"
+			/>
+		<property
+			name="updateDate"
+			column="f_update_date"
+			not-null="true"
+			/>
+		<property 
+			name="recordAddedBy"
+			column="f_record_added_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+		<property 
+			name="recordUpdatedBy"
+			column="f_record_updated_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+	</class>
+</hibernate-mapping>

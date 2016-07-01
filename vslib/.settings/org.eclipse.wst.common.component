@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="vslib">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcSetup"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcCirculation"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcManager"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcCataloguing"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcCommon"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcReport"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcProfile"/>
+        <property name="context-root" value="vslib"/>
+        <property name="java-output-path" value="/vslib/build/classes"/>
+    </wb-module>
+</project-modules>

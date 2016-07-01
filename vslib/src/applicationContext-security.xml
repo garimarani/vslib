@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://www.springframework.org/schema/security 
+            http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+		<security:global-method-security pre-post-annotations="enabled"/>
+		
+		<security:http use-expressions="true" >
+		
+		<security:form-login login-page="/login" 
+			default-target-url="/loginSuccess" 
+			authentication-failure-url="/badCredentials"  />
+			
+		<security:intercept-url pattern="/favicon.ico" access="permitAll"/>
+		<security:intercept-url pattern="/index" access="permitAll" />
+		<security:intercept-url pattern="/css" access="permitAll"/>
+		<security:intercept-url pattern="/css/**/*" access="permitAll"/>
+		<security:intercept-url pattern="/images" access="permitAll"/>
+		<security:intercept-url pattern="/images/**/*" access="permitAll"/>
+		<security:intercept-url pattern="/templates" access="permitAll"/>
+		<security:intercept-url pattern="/templates/**/*" access="permitAll"/>
+		<security:intercept-url pattern="/adminContent/**/*" access="hasAnyRole('ROLE_ADMIN')"/>
+				
+		<security:intercept-url pattern="/cataloguing" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CAT')"/>
+		<security:intercept-url pattern="/cataloguing/**/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CAT')"/>
+		
+		<security:intercept-url pattern="/circulation" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CIR')"/>
+		<security:intercept-url pattern="/circulation/**/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CIR')"/>
+		
+		<security:intercept-url pattern="/manager" access="hasAnyRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/manager/**/*" access="hasAnyRole('ROLE_ADMIN')"/>
+		
+		<security:intercept-url pattern="/profile" access="hasAnyRole('ROLE_PATRON')"/>
+		<security:intercept-url pattern="/profile/**/*" access="hasAnyRole('ROLE_PATRON')"/>
+		
+		<security:intercept-url pattern="/report" access="hasAnyRole('ROLE_ADMIN', 'ROLE_REP')"/>
+		<security:intercept-url pattern="/report/**/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_REP')"/>
+		
+		<security:intercept-url pattern="/setup" access="hasAnyRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/setup/**/*" access="hasAnyRole('ROLE_ADMIN')"/>
+		
+		<security:intercept-url pattern="/login" access="permitAll" requires-channel="http" />
+
+		<security:logout logout-success-url="/logoutSuccess" invalidate-session="true"/>
+	</security:http>
+	
+	<bean id="vslibUserDetailsService" class="org.vsfamily.vslib.web.security.VslibUserDetailsService"/>
+	
+	<bean id="xmlViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
+    	<property name="order" value="1"/>
+    	<property name="location">
+        	<value>/WEB-INF/views/spring-views.xml</value>
+    	</property>
+	</bean>
+	<!-- 
+	<security:authentication-manager>
+		 
+		<security:authentication-provider  user-service-ref="vslibUserDetailsService">
+			<security:password-encoder hash="md5"/>
+		</security:authentication-provider>
+
+	</security:authentication-manager>
+	 -->
+	 
+	<security:authentication-manager >
+    	<security:authentication-provider ref="authProvider"></security:authentication-provider>  
+    </security:authentication-manager>
+	
+    <bean id="authProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <property name="userDetailsService" ref="vslibUserDetailsService" />
+        <property name="passwordEncoder" ref="encoder" />
+    </bean>
+    
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>   
+	 
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/vslib" />
+		<property name="username" value="postgres" />
+		<property name="password" value="admin" />
+	</bean>
+	 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>hibernate/common/address.hbm.xml</value>
+				<value>hibernate/common/gender.hbm.xml</value>
+				<value>hibernate/common/salutation.hbm.xml</value>
+				
+				<value>hibernate/vslib/document.hbm.xml</value>
+				<value>hibernate/vslib/fineCategory.hbm.xml</value>
+				<value>hibernate/vslib/item.hbm.xml</value>
+				<value>hibernate/vslib/itemCheckIn.hbm.xml</value>
+				<value>hibernate/vslib/itemCheckOut.hbm.xml</value>
+				<value>hibernate/vslib/itemHold.hbm.xml</value>
+				<value>hibernate/vslib/itemReserve.hbm.xml</value>
+				<value>hibernate/vslib/itemType.hbm.xml</value>
+				<value>hibernate/vslib/language.hbm.xml</value>
+				<value>hibernate/vslib/library.hbm.xml</value>
+				<value>hibernate/vslib/libraryBranch.hbm.xml</value>
+				<value>hibernate/vslib/libraryType.hbm.xml</value>
+				<value>hibernate/vslib/patron.hbm.xml</value>
+				<value>hibernate/vslib/patronCategory.hbm.xml</value>
+				<value>hibernate/vslib/patronGroup.hbm.xml</value>
+				<value>hibernate/vslib/subject.hbm.xml</value>
+				<value>hibernate/vslib/vendor.hbm.xml</value>
+				<value>hibernate/vslib/vslibParams.hbm.xml</value>
+				
+				<value>hibernate/vslib/manager/groupRole.hbm.xml</value>
+				<value>hibernate/vslib/manager/manager.hbm.xml</value>
+				<value>hibernate/vslib/manager/managerGroup.hbm.xml</value>
+				<value>hibernate/vslib/manager/managerRole.hbm.xml</value>
+				<value>hibernate/vslib/manager/vslibGroup.hbm.xml</value>
+				<value>hibernate/vslib/manager/vslibRole.hbm.xml</value>
+				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+				hibernate.show_sql=false
+				hibernate.format_sql=true
+				hibernate.hbm2ddl.auto=update
+				hibernate.search.default.directory_provider=filesystem
+                hibernate.search.default.indexBase=/var/vslib-data/lucene/indexes
+                hibernate.search.lucene_version=LUCENE_36
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="txm" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>	
+	
+	<bean id="authenticationFailureHandler"
+	    class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
+	    <property name="exceptionMappings">
+	        <props>
+	            <prop key="org.springframework.security.authentication.BadCredentialsException">/badCredentials</prop>
+	            <prop key="org.springframework.security.authentication.CredentialsExpiredException">/login/credentialsExpired</prop>
+	            <prop key="org.springframework.security.authentication.LockedException">/login/accountLocked</prop>
+	            <prop key="org.springframework.security.authentication.DisabledException">/login/accountDisabled</prop>
+	        </props>
+	    </property>
+	</bean>
+</beans>

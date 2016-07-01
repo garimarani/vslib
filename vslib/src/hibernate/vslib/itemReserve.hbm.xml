@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping default-lazy="false">
+
+	<class name="org.vsfamily.vslib.common.domain.ItemReserve" table="org_vsfamily_vslib_item_reserve">
+		<id name="id" column="f_id" type="long">
+			<generator class="increment" />
+		</id>
+		<properties name="uk_item_reserve" unique="true">
+			<many-to-one
+				name="item"
+				column="f_item"
+				class="org.vsfamily.vslib.common.domain.Item"
+				not-null="true"
+				/>
+			<many-to-one
+				name="patron"
+				column="f_patron"
+				class="org.vsfamily.vslib.common.domain.Patron"
+				not-null="true"
+				/>
+		</properties>
+		<property
+			name="reserveDate"
+			column="f_reserve_date"
+			not-null="true"
+			/>
+		<property
+			name="reserveReleaseDate"
+			column="f_reserve_release_date"
+			not-null="true"
+			/>
+			
+		<property
+			name="addDate"
+			column="f_add_date"
+			not-null="true"
+			/>
+		<property
+			name="updateDate"
+			column="f_update_date"
+			not-null="true"
+			/>
+		<property 
+			name="recordAddedBy"
+			column="f_record_added_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+		<property 
+			name="recordUpdatedBy"
+			column="f_record_updated_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+	</class>
+</hibernate-mapping>
