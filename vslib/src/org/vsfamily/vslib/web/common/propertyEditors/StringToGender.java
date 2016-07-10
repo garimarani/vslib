@@ -5,6 +5,9 @@ import org.springframework.core.convert.converter.Converter;
 import org.vsfamily.common.domain.Gender;
 import org.vsfamily.vslib.web.common.service.VslibCommonService;
 
+/**
+ * Converts id (String form) to the object of type Gender.
+ */
 public class StringToGender implements Converter<String, Gender>{
 
 	@Autowired

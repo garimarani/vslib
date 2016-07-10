@@ -7,7 +7,9 @@ import org.springframework.validation.Validator;
 import org.vsfamily.common.domain.Address;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 
-
+/**
+ * Validator used for validation of address object.
+ */
 @Component
 public class AddressValidator extends VslibBaseValidator implements Validator {
 

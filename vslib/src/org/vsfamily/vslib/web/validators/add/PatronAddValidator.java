@@ -7,6 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.Patron;
+import org.vsfamily.vslib.web.common.validators.AddressValidator;
 import org.vsfamily.vslib.web.service.VslibService;
 
 @Component
@@ -14,6 +15,9 @@ public class PatronAddValidator extends VslibBaseValidator implements Validator 
 
 	@Autowired
 	VslibService vslibService;
+	
+	@Autowired
+	AddressValidator addressValidator;
 	
 	@Override
 	public boolean supports(Class<?> cls) {
@@ -151,6 +155,22 @@ public class PatronAddValidator extends VslibBaseValidator implements Validator 
 					errors.rejectValue("retypePassword", "value.patron.retypePassword");
 				}
 			}
+		}
+
+		try {
+			errors.pushNestedPath("address");
+			ValidationUtils.invokeValidator(this.addressValidator,
+					obj.getAddress(), errors);
+		} finally {
+			errors.popNestedPath();
+		}
+
+		try {
+			errors.pushNestedPath("alternateAddress");
+			ValidationUtils.invokeValidator(this.addressValidator,
+					obj.getAlternateAddress(), errors);
+		} finally {
+			errors.popNestedPath();
 		}
 	}
 }

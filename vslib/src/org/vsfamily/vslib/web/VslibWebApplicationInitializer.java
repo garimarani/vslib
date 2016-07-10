@@ -14,6 +14,9 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
+/**
+ * VSLib web application initializer class.
+ */
 public class VslibWebApplicationInitializer implements WebApplicationInitializer {
 
 	private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
@@ -32,6 +35,10 @@ public class VslibWebApplicationInitializer implements WebApplicationInitializer
 		registerSpringSecurityFilterChain(servletContext);
 	}
 	
+	/**
+	 * Implements spring security filter chain.
+	 * @param servletContext - the servlet context
+	 */
 	private void registerSpringSecurityFilterChain(ServletContext servletContext) {
 		FilterRegistration.Dynamic springSecurityFilterChain = servletContext.addFilter(
 				BeanIds.SPRING_SECURITY_FILTER_CHAIN, new DelegatingFilterProxy());

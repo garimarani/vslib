@@ -9,6 +9,10 @@ import org.vsfamily.common.domain.Gender;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.web.common.service.VslibCommonService;
 
+
+/**
+ * Validator used for validation of gender object at the time of edition.
+ */
 @Component
 public class GenderEditValidator extends VslibBaseValidator implements Validator {
 

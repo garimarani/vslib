@@ -11,6 +11,9 @@ import org.joda.time.DateTime;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
 
+/**
+ * Calendar formatter, used for converting String to Calendar and Calendar to String the variables received / supplied to the pages.
+ */
 @Component
 public class CalendarFormatter implements Formatter<Calendar> {
 

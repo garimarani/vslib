@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
+/**
+ * DateAndTime class, use for conversions between string and date.
+ */
 public class DateAndTime {
 
 	public DateAndTime() {
@@ -85,6 +89,11 @@ public class DateAndTime {
 		}
 	}
 	
+	/**
+	 * Gets date as Calendar object from string.
+	 * @param calendar - the date in String form.
+	 * @return the date as Calendar object
+	 */
 	public Calendar getCalendarFromString(String calendar){
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -102,6 +111,11 @@ public class DateAndTime {
 		}
 	}
 	
+	/**
+	 * Gets date as Calendar object from string along with time.
+	 * @param calendar - the date in String form
+	 * @return the date as Calendar object
+	 */
 	public Calendar getCalendarFromStringWithTime(String calendar){
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 		
@@ -118,6 +132,12 @@ public class DateAndTime {
 		}
 	}
 	
+	/**
+	 * Gets the number of completed days between the two dates.
+	 * @param fromDate - the from date
+	 * @param toDate - the to date
+	 * @return the number of days
+	 */
 	public int getNumberOfCompletedDays(Calendar fromDate, Calendar toDate){
 		if (fromDate==null || toDate==null){
 			return 0;
@@ -137,6 +157,12 @@ public class DateAndTime {
 		}
 	}
 	
+	/**
+	 * Gets the number of completed months between the two dates.
+	 * @param fromDate - the from date
+	 * @param toDate - the to date
+	 * @return the number of months
+	 */
 	public int getNumberOfCompletedMonths(Calendar fromDate, Calendar toDate){
 		if (fromDate==null || toDate==null){
 			return 0;
@@ -172,10 +198,22 @@ public class DateAndTime {
 		}
 	}
 	
+	/**
+	 * Gets the number of completed years between the two dates.
+	 * @param fromDate - the from date
+	 * @param toDate - the to date
+	 * @return the number of completed years
+	 */
 	public int getNumberOfCompletedYears(Calendar fromDate, Calendar toDate){
 		return (int) this.getNumberOfCompletedMonths(fromDate, toDate)/12;
 	}
 	
+	/**
+	 * Compare the two dates.
+	 * @param fd - the from date
+	 * @param td - the to date
+	 * @return 0 if both are same, -1 if from date is before to date, and 1 if from date is after to date
+	 */
 	public int compareDates(Calendar fd, Calendar td){
 		
 		int fdYear = fd.get(Calendar.YEAR);

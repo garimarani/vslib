@@ -9,6 +9,9 @@ import org.vsfamily.common.domain.Salutation;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.web.common.service.VslibCommonService;
 
+/**
+ * Validator used for validation of salutation object at the time of edition.
+ */
 @Component
 public class SalutationEditValidator extends VslibBaseValidator implements Validator {
 

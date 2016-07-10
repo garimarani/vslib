@@ -9,6 +9,9 @@ import org.vsfamily.common.domain.Gender;
 import org.vsfamily.common.domain.Salutation;
 import org.vsfamily.vslib.web.common.repository.VslibCommonDAO;
 
+/**
+ * DAO service implementation for common objects.
+ */
 @Component(value="vslibCommonService")
 public class VslibCommonServiceImpl implements VslibCommonService {
 

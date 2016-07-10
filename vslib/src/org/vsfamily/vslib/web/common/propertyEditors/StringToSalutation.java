@@ -5,6 +5,9 @@ import org.springframework.core.convert.converter.Converter;
 import org.vsfamily.common.domain.Salutation;
 import org.vsfamily.vslib.web.common.service.VslibCommonService;
 
+/**
+ * Converts id (String form) to the object of type Salutation.
+ */
 public class StringToSalutation implements Converter<String, Salutation>{
 
 	@Autowired

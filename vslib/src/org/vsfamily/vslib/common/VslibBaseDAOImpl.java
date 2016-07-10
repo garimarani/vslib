@@ -13,6 +13,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.PlatformTransactionManager;
 
+/**
+ * Base DAO implementation class, used for accessing data from the database. All the DAO classes of the
+ * VSLib software are an extension of this class.
+ * 
+ */
 public class VslibBaseDAOImpl implements VslibBaseDAO {
 	
 	private Session session;
@@ -21,29 +26,53 @@ public class VslibBaseDAOImpl implements VslibBaseDAO {
 	
 	protected final Logger logger = Logger.getLogger(this.getClass());
 
+	/**
+	 * Gets the hibernate session used for accessing data from database repository.
+	 * @return the hibernate session.
+	 */
 	public Session getSession(){
 		return this.session;
 	}
 	
+	/**
+	 * Sets the hibernate session used for assessing data from database repository.
+	 * @param session - the hibernate session
+	 */
 	public void setSession(Session session) {
 		this.session = session;
 	}
 
+	/**
+	 * Gets the transaction manager for database transactions.
+	 * @return the transaction manager
+	 */
 	public PlatformTransactionManager getTxm() {
 		return txm;
 	}
 
+	/**
+	 * Sets the transaction manager for database transactions.
+	 * @param txm - the transaction manager.
+	 */
 	@Autowired
 	public void setTxm(PlatformTransactionManager txm) {
 		this.txm = txm;
 	}
 
+	/**
+	 * Sets the hibernate session factory.
+	 * @param sessionFactory - the hibernate session factory.
+	 */
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.session = sessionFactory.openSession();
 		this.sessionFactory = sessionFactory;
 	}
 	
+	/**
+	 * Gets the hibernate session factory.
+	 * @return the hibernate session factory.
+	 */
 	public SessionFactory getSessionFactory(){
 		return this.sessionFactory;
 	}
@@ -314,27 +343,6 @@ public class VslibBaseDAOImpl implements VslibBaseDAO {
 		try {
 			Criteria crit = session.createCriteria(className);
 			crit.add(Restrictions.eq(arg, value));
-			list = crit.list();
-		} catch (Exception e) {
-			logger.info(e);
-			System.out.println(e);
-		} finally {
-			session.close();
-			session = sessionFactory.openSession();
-		}
-		return list;
-	}
-
-	@SuppressWarnings({ "unchecked" })
-	@Override
-	public List<?> listObjectArg(Class<?> className, String arg, Object value,
-			int firstResult, int maxResults) {
-		List<Object> list = new ArrayList<Object>();
-		try { 
-			Criteria crit = session.createCriteria(className);
-			crit.add(Restrictions.eq(arg, value))
-				.setFirstResult(firstResult)
-				.setFetchSize(maxResults);
 			list = crit.list();
 		} catch (Exception e) {
 			logger.info(e);

@@ -62,6 +62,9 @@ import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToPatronGroup
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToSubject;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToVendor;
 
+/**
+ * Context configuration class of VSLib package.
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "org.vsfamily.vslib.web" })
