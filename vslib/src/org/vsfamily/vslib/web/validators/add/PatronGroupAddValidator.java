@@ -9,6 +9,9 @@ import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.PatronGroup;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating PatronGroup object at the time of addition.
+ */
 @Component
 public class PatronGroupAddValidator extends VslibBaseValidator implements Validator {
 

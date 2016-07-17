@@ -6,25 +6,21 @@
 
 <jsp:include page="/WEB-INF/views/vslib/head.jsp" />
 
-<h2 class="contentTitle">Global Parameters</h2>
+<h2 class="contentTitle">Error Messages (View Details)</h2>
 
-<table class="dataTable">
-	<thead>
-		<tr>
-			<th>Description</th>
-			<th style="width: 200px;">Link</th>
-		</tr>
-	</thead>
+<table class="vsform">
 	<tbody>
-		<tr>
-			<td>Parameters w.r.t. email based services.</td>
-			<td><a href="<c:url value="/setup/parameters/email"/>">Enable/Disable Email</a></td>
+		<tr>	
+			<td><label><spring:message code="errorMessages.messageDate"/></label></td>
+			<td>
+				${errorMessages.messageDate.time}
+			</td>
 		</tr>
-	</tbody>
-	<tbody>
-		<tr>
-			<td>Parameters w.r.t. storage locations.</td>
-			<td><a href="<c:url value="/setup/parameters/storage"/>">Enter Values</a></td>
+		<tr>	
+			<td><label><spring:message code="errorMessages.messageText"/></label></td>
+			<td>
+				<c:out value="${errorMessages.messageText}" escapeXml="false"/>
+			</td>
 		</tr>
 	</tbody>
 </table>

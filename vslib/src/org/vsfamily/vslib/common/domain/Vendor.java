@@ -30,7 +30,7 @@ public class Vendor extends VslibBaseClass {
 	
 	/**
 	 * Gets the email.
-	 * @return
+	 * @return the email
 	 */
 	public String getEmail() {
 		return email;

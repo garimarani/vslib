@@ -3,6 +3,7 @@ package org.vsfamily.vslib.web.service;
 import java.util.List;
 
 import org.vsfamily.vslib.common.domain.Document;
+import org.vsfamily.vslib.common.domain.ErrorMessages;
 import org.vsfamily.vslib.common.domain.FineCategory;
 import org.vsfamily.vslib.common.domain.Item;
 import org.vsfamily.vslib.common.domain.ItemCheckIn;
@@ -28,6 +29,8 @@ import org.vsfamily.vslib.forms.SimpleSearchForm;
 public interface VslibService {
 
 	public boolean							addDocument(Document obj);
+	public boolean							addDocumentItem(Document document, Item item);
+	public boolean							addErrorMessages(ErrorMessages obj);
 	public boolean							addFineCategory(FineCategory obj);
 	public boolean							addItem(Item obj);
 	public boolean							addItemCheckIn(ItemCheckIn obj);
@@ -47,6 +50,7 @@ public interface VslibService {
 	public boolean							addVslibParams(VslibParams vslibParams);
 	
 	public boolean							deleteDocument(Document obj);
+	public boolean							deleteErrorMessages(ErrorMessages obj);
 	public boolean							deleteFineCategory(FineCategory obj);
 	public boolean							deleteItem(Item obj);
 	public boolean							deleteItemCheckIn(ItemCheckIn obj);
@@ -65,6 +69,7 @@ public interface VslibService {
 	public boolean							deleteVendor(Vendor obj);
 	
 	public Document							getDocument(Long id);
+	public ErrorMessages					getErrorMessages(Long id);
 	public FineCategory						getFineCategory(Long id);
 	public FineCategory						getFineCategoryByCode(String code);
 	public FineCategory						getFineCategoryByName(String name);
@@ -110,6 +115,7 @@ public interface VslibService {
 	public List<Item>						listNewArrivals();
 	public List<Document>					listDocumentSortByPrimaryAuthor();
 	public List<Document>					listDocumentSortByUniformTitle();
+	public List<ErrorMessages>				listErrorMessages();
 	public List<FineCategory>				listFineCategory();
 	public List<Item>						listItem();
 	public List<Item>						listItemByDocument(Document document);
@@ -142,6 +148,7 @@ public interface VslibService {
 	public List<Patron>						searchPatron(SimpleSearchForm ssf);
 	
 	public boolean							updateDocument(Document obj);
+	public boolean							updateErrorMessages(ErrorMessages obj);
 	public boolean							updateFineCategory(FineCategory obj);
 	public boolean							updateItem(Item obj);
 	public boolean							updateItemCheckIn(ItemCheckIn obj);

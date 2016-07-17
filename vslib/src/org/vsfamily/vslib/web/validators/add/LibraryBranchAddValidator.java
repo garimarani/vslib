@@ -10,6 +10,9 @@ import org.vsfamily.vslib.common.domain.LibraryBranch;
 import org.vsfamily.vslib.web.common.validators.AddressValidator;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating LibraryBranch object at the time of addition.
+ */
 @Component
 public class LibraryBranchAddValidator extends VslibBaseValidator implements Validator {
 

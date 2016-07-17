@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -135,6 +136,16 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 		messageSource.setBasenames(basenames);
 		messageSource.setUseCodeAsDefaultMessage(true);
 		return messageSource;
+	}
+	
+	@Bean(name="multipartResolver")
+	public CommonsMultipartResolver multipartResolver(){
+		
+		CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+		
+		cmr.setMaxUploadSize(500000);
+		
+		return cmr;
 	}
 
 	@Override

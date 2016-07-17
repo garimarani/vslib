@@ -7,6 +7,9 @@ import org.springframework.validation.Validator;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.Document;
 
+/**
+ * Validator used for validating Document object at the time of addition.
+ */
 @Component
 public class DocumentAddValidator extends VslibBaseValidator implements Validator {
 

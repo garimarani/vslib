@@ -5,6 +5,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 
+/**
+ * Validator used for validating vendor object at the time of edition.
+ */
 @Component
 public class VendorEditValidator extends VslibBaseValidator implements Validator {
 

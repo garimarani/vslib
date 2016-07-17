@@ -94,6 +94,7 @@
 				<value>hibernate/common/salutation.hbm.xml</value>
 				
 				<value>hibernate/vslib/document.hbm.xml</value>
+				<value>hibernate/vslib/errorMessages.hbm.xml</value>
 				<value>hibernate/vslib/fineCategory.hbm.xml</value>
 				<value>hibernate/vslib/item.hbm.xml</value>
 				<value>hibernate/vslib/itemCheckIn.hbm.xml</value>

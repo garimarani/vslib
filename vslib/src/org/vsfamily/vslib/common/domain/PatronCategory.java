@@ -74,7 +74,7 @@ public class PatronCategory extends VslibBaseClass {
 	
 	/**
 	 * Sets the maximum hold period (days).
-	 * @param maximumHoldPeriod
+	 * @param maximumHoldPeriod - the maximum hold period
 	 */
 	public void setMaximumHoldPeriod(Long maximumHoldPeriod) {
 		this.maximumHoldPeriod = maximumHoldPeriod;

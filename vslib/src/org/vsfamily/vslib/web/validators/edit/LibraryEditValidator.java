@@ -10,6 +10,9 @@ import org.vsfamily.vslib.common.domain.Library;
 import org.vsfamily.vslib.web.common.validators.AddressValidator;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating Library object at the time of edition.
+ */
 @Component
 public class LibraryEditValidator extends VslibBaseValidator implements Validator {
 

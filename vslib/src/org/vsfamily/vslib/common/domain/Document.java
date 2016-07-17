@@ -56,7 +56,6 @@ public class Document extends VslibBaseClass {
 	@Override
 	@DocumentId
 	public Long getId() {
-		// TODO Auto-generated method stub
 		return super.getId();
 	}
 	

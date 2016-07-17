@@ -5,6 +5,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 
+/**
+ * Validator used while changing password.
+ */
 @Component
 public class ChangePasswordValidator extends VslibBaseValidator implements Validator {
 

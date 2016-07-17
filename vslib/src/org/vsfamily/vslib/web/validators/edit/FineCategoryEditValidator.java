@@ -11,6 +11,9 @@ import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.FineCategory;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating FineCategory object at the time of edition.
+ */
 @Component
 public class FineCategoryEditValidator extends VslibBaseValidator implements Validator {
 

@@ -88,6 +88,7 @@ public class ItemEditController extends CataloguingBaseController {
 		obj.setLibraryBranch(item.getLibraryBranch());
 		obj.setSubject(item.getSubject());
 		obj.setLanguage(item.getLanguage());
+		obj.setAlternateId(item.getAlternateId());
 		
 		obj.setUpdateDefaults(principal.getName());
 		

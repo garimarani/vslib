@@ -18,6 +18,10 @@ public class VslibParams extends VslibBaseClass {
 	private String			sslOrTls;
 	private String			fromEmail;
 	
+	private String			photosFolder;
+	private String			edocsFolder;
+	private String			worksFolder;
+	
 	/**
 	 * Gets whether the email communication is enabled or not.
 	 * @return true if enabled, false otherwise
@@ -28,7 +32,7 @@ public class VslibParams extends VslibBaseClass {
 	
 	/**
 	 * Sets whether the email communication is to enabled or not.
-	 * @param enableEmail
+	 * @param enableEmail - true if yes, false otherwise
 	 */
 	public void setEnableEmail(boolean enableEmail) {
 		this.enableEmail = enableEmail;
@@ -124,7 +128,7 @@ public class VslibParams extends VslibBaseClass {
 	
 	/**
 	 * Sets whether to use SSL or TLS.
-	 * @param sslOrTls
+	 * @param sslOrTls - ssl or tls
 	 */
 	public void setSslOrTls(String sslOrTls) {
 		this.sslOrTls = sslOrTls;
@@ -144,6 +148,54 @@ public class VslibParams extends VslibBaseClass {
 	 */
 	public void setFromEmail(String fromEmail) {
 		this.fromEmail = fromEmail;
+	}
+
+	/**
+	 * Gets the path for storing photos.
+	 * @return the path for storing photos
+	 */
+	public String getPhotosFolder() {
+		return photosFolder;
+	}
+
+	/**
+	 * Sets the path for storing photos
+	 * @param photosFolder - the path for storing photos
+	 */
+	public void setPhotosFolder(String photosFolder) {
+		this.photosFolder = photosFolder;
+	}
+
+	/**
+	 * Gets the path for storing electronic documents.
+	 * @return the path for storing electronic documents
+	 */
+	public String getEdocsFolder() {
+		return edocsFolder;
+	}
+
+	/**
+	 * Sets the path for storing electronic documents
+	 * @param edocsFolder
+	 */
+	public void setEdocsFolder(String edocsFolder) {
+		this.edocsFolder = edocsFolder;
+	}
+
+	/**
+	 * Gets the path for temporary storage
+	 * @return the path for temporary storage
+	 */
+	public String getWorksFolder() {
+		return worksFolder;
+	}
+
+	/**
+	 * Ste the path for temporary storage
+	 * @param worksFolder - the path for temporary storage
+	 */
+	public void setWorksFolder(String worksFolder) {
+		this.worksFolder = worksFolder;
 	}
 	
 }

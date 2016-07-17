@@ -55,6 +55,24 @@
 			type="string"
 			length="100"
 			/>
+		<property
+			name="photosFolder"
+			column="f_photos_folder"
+			type="string"
+			length="255"
+			/>
+		<property
+			name="edocsFolder"
+			column="f_edocs_folder"
+			type="string"
+			length="255"
+			/>
+		<property
+			name="worksFolder"
+			column="f_works_folder"
+			type="string"
+			length="255"
+			/>
 			
 		<property
 			name="addDate"

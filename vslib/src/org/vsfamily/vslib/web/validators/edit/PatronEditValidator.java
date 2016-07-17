@@ -10,6 +10,9 @@ import org.vsfamily.vslib.common.domain.Patron;
 import org.vsfamily.vslib.web.common.validators.AddressValidator;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating patron object at the time of edition.
+ */
 @Component
 public class PatronEditValidator extends VslibBaseValidator implements Validator {
 

@@ -7,6 +7,9 @@ import org.springframework.validation.Validator;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.VslibParams;
 
+/**
+ * Validator used for validating email related parameters.
+ */
 @Component
 public class ParametersEmailValidator extends VslibBaseValidator implements Validator {
 

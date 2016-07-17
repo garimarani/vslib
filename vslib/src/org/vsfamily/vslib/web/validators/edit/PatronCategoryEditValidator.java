@@ -9,6 +9,9 @@ import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.PatronCategory;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating patronCategory object at the time of edition.
+ */
 @Component
 public class PatronCategoryEditValidator extends VslibBaseValidator implements Validator {
 

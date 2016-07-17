@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.vsfamily.vslib.common.domain.Document;
+import org.vsfamily.vslib.common.domain.ErrorMessages;
 import org.vsfamily.vslib.common.domain.FineCategory;
 import org.vsfamily.vslib.common.domain.Item;
 import org.vsfamily.vslib.common.domain.ItemCheckIn;
@@ -37,6 +38,16 @@ public class VslibServiceImpl implements VslibService {
 
 	@Override
 	public boolean addDocument(Document obj) {
+		return this.vslibDAO.save(obj);
+	}
+
+	@Override
+	public boolean addDocumentItem(Document document, Item item) {
+		return this.vslibDAO.addDocumentItem(document, item);
+	}
+
+	@Override
+	public boolean addErrorMessages(ErrorMessages obj) {
 		return this.vslibDAO.save(obj);
 	}
 
@@ -131,6 +142,11 @@ public class VslibServiceImpl implements VslibService {
 	}
 
 	@Override
+	public boolean deleteErrorMessages(ErrorMessages obj) {
+		return this.vslibDAO.delete(obj);
+	}
+
+	@Override
 	public boolean deleteFineCategory(FineCategory obj) {
 		return this.vslibDAO.delete(obj);
 	}
@@ -213,6 +229,11 @@ public class VslibServiceImpl implements VslibService {
 	@Override
 	public Document getDocument(Long id) {
 		return (Document) this.vslibDAO.getObjectById(Document.class, id);
+	}
+
+	@Override
+	public ErrorMessages getErrorMessages(Long id) {
+		return (ErrorMessages) this.vslibDAO.getObjectById(ErrorMessages.class, id);
 	}
 
 	@Override
@@ -439,6 +460,12 @@ public class VslibServiceImpl implements VslibService {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<ErrorMessages> listErrorMessages() {
+		return (List<ErrorMessages>) this.vslibDAO.listObjectSorted(ErrorMessages.class, "messageDate", "desc");
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<FineCategory> listFineCategory() {
 		return (List<FineCategory>) this.vslibDAO.listObjectSorted(FineCategory.class, "code", "asc");
 	}
@@ -610,6 +637,11 @@ public class VslibServiceImpl implements VslibService {
 
 	@Override
 	public boolean updateDocument(Document obj) {
+		return this.vslibDAO.update(obj);
+	}
+
+	@Override
+	public boolean updateErrorMessages(ErrorMessages obj) {
 		return this.vslibDAO.update(obj);
 	}
 

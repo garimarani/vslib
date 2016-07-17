@@ -1,5 +1,6 @@
 package org.vsfamily.vslib.common.tools;
 
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -21,5 +22,19 @@ public class Tools {
 	   for( int i = 0; i < len; i++ ) 
 	      sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
 	   return sb.toString();
+	}
+	
+	public String getFilename(){
+		String str = "";
+		Calendar cal = Calendar.getInstance();
+		str = cal.get(Calendar.YEAR) 
+			+ "-" + cal.get(Calendar.MONTH)
+			+ "-" + cal.get(Calendar.DAY_OF_MONTH)
+			+ "-" + cal.get(Calendar.HOUR)
+			+ "-" + cal.get(Calendar.MINUTE)
+			+ "-" + cal.get(Calendar.SECOND)
+			+ "-" + cal.get(Calendar.MILLISECOND)
+			+ this.randomString(10);
+		return str;
 	}
 }

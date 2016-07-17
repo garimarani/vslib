@@ -7,6 +7,9 @@ import org.springframework.validation.Validator;
 import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.forms.SimpleSearchForm;
 
+/**
+ * Validator used for validating simple search form inputs.
+ */
 @Component
 public class SimpleSearchFormValidator extends VslibBaseValidator implements Validator {
 

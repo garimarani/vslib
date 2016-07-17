@@ -65,6 +65,12 @@
 			<key column="f_item"/>
          	<one-to-many class="org.vsfamily.vslib.common.domain.ItemHold"/>
 		</set>
+		<property
+			name="alternateId"
+			column="f_alternate_id"
+			type="string"
+			length="20"
+			/>
 			
 		<property
 			name="addDate"

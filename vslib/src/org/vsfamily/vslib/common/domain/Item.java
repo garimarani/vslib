@@ -22,6 +22,7 @@ public class Item extends VslibBaseClass {
 	private Set<ItemCheckOut>	checkOuts;
 	private Set<ItemReserve>	reserves;
 	private Set<ItemHold>		holds;
+	private String				alternateId;
 	
 	@Override
 	@DocumentId
@@ -190,5 +191,13 @@ public class Item extends VslibBaseClass {
 	 */
 	public void setHolds(Set<ItemHold> holds) {
 		this.holds = holds;
+	}
+
+	public String getAlternateId() {
+		return alternateId;
+	}
+
+	public void setAlternateId(String alternateId) {
+		this.alternateId = alternateId;
 	}
 }

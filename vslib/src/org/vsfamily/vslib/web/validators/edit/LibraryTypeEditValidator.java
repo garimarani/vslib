@@ -9,6 +9,9 @@ import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.LibraryType;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating LibraryType object at the time of edition.
+ */
 @Component
 public class LibraryTypeEditValidator extends VslibBaseValidator implements Validator {
 

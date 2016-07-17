@@ -30,6 +30,28 @@ public class VslibDAOImpl extends VslibBaseDAOImpl implements VslibDAO {
 	
 	
 	@Override
+	public boolean addDocumentItem(Document doc, Item item) {
+		Transaction tx = this.getSession().beginTransaction();
+		boolean status = false;
+		try {
+			this.getSession().save(doc);
+			item.setDocument(doc);
+			this.getSession().save(item);
+			tx.commit();
+			status = true;
+		} catch (Exception e) {
+			if (tx!=null) tx.rollback();
+			logger.info(e);
+			System.out.println(e);
+			status = false;
+		} finally {
+			this.getSession().close();
+			this.setSession(this.getSessionFactory().openSession());
+		}
+		return status;
+	}
+
+	@Override
 	public VslibParams getVslibParams() {
 		
 		VslibParams vslibParams = null;
@@ -72,7 +94,7 @@ public class VslibDAOImpl extends VslibBaseDAOImpl implements VslibDAO {
 			crit.add(Restrictions.le("addDate", calStart));
 			crit.add(Restrictions.ge("addDate", calEnd));
 			
-			crit.createAlias("doc", "document");
+			crit.createAlias("document", "doc");
 			
 			crit.addOrder(Order.desc("doc.uniformTitle"));
 			

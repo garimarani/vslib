@@ -40,6 +40,13 @@
 				</td>
 			</tr>
 			<tr>	
+				<td><form:label path="alternateId"><spring:message code="item.alternateId"/></form:label></td>
+				<td>
+					<form:input path="alternateId" class="inputsmall"/>
+					<form:errors path="alternateId" class="errorMsg"/>
+				</td>
+			</tr>
+			<tr>	
 				<td><form:label path="itemType"><spring:message code="item.itemType"/></form:label></td>
 				<td>
 					<form:select path="itemType" class="myform inputlarge">

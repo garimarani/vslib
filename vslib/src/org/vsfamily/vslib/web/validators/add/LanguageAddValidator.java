@@ -9,6 +9,9 @@ import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.Language;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating Language object at the time of addition.
+ */
 @Component
 public class LanguageAddValidator extends VslibBaseValidator implements Validator {
 

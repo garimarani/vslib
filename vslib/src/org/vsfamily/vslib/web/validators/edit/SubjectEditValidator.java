@@ -9,6 +9,9 @@ import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.Subject;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating subject object at the time of edition.
+ */
 @Component
 public class SubjectEditValidator extends VslibBaseValidator implements Validator {
 

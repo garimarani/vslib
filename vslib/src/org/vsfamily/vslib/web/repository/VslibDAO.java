@@ -13,6 +13,9 @@ import org.vsfamily.vslib.forms.SimpleSearchForm;
 
 public interface VslibDAO extends VslibBaseDAO {
 	
+	
+	public boolean						addDocumentItem(Document doc, Item item);
+	
 	public VslibParams					getVslibParams();
 
 	public List<Item>					listNewArrivals();

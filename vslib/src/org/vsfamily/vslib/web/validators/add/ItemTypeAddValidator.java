@@ -9,6 +9,9 @@ import org.vsfamily.vslib.common.VslibBaseValidator;
 import org.vsfamily.vslib.common.domain.ItemType;
 import org.vsfamily.vslib.web.service.VslibService;
 
+/**
+ * Validator used for validating ItemType object at the time of addition.
+ */
 @Component
 public class ItemTypeAddValidator extends VslibBaseValidator implements Validator {
 
