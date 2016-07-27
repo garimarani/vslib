@@ -9,9 +9,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.vsfamily.vslib.common.tools.VslibPaginate;
 
 /**
  * Base DAO implementation class, used for accessing data from the database. All the DAO classes of the
@@ -334,6 +336,50 @@ public class VslibBaseDAOImpl implements VslibBaseDAO {
 			session = this.sessionFactory.openSession();
 		}
 		return listObject;
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public VslibPaginate listObjectSortedPaginate(Class<?> className, String sortBy,
+			String sortOrder, int firstResult, int maxResults) {
+		
+		VslibPaginate page = new VslibPaginate();
+		
+		page.setStartResult(firstResult);
+		page.setMaxResult(maxResults);
+		
+		List<Object> listObject = new ArrayList<Object>();
+
+		try {
+			
+			Criteria crit = session.createCriteria(className);
+			
+			if (sortOrder.equals("asc")) {
+				crit.addOrder(Order.asc(sortBy));
+			} else {
+				crit.addOrder(Order.desc(sortBy));
+			}
+			
+			crit.setProjection(Projections.rowCount());
+			
+			List<?> listRowCount = crit.list();
+			page.setTotalResult((int) listRowCount.get(0));
+			
+			crit.setProjection(null);
+			crit.setFirstResult(firstResult)
+				.setFetchSize(maxResults);
+		
+			listObject = crit.list();
+			page.setListObject(listObject);
+		} catch (Exception e) {
+			logger.info(e);
+			System.out.println(e);
+		} finally {
+			session.close();
+			session = this.sessionFactory.openSession();
+		}
+		return page;
 	}
 	
 	@SuppressWarnings("unchecked")

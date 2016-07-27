@@ -56,5 +56,10 @@
 	<li><a href="<c:url value="/setup/data/importDocument"/>">Data Import (Docs)</a></li>
 	<li><a href="<c:url value="/setup/dataImport/patron"/>">Data Import (Patron)</a></li>
 	<br/><br/>
+	<li><a href="<c:url value="/setup/adverts/addNew"/>">Adverts</a> 
+		<ul>
+			<li style="width: 100px;"><a href="<c:url value="/setup/adverts/listAll"/>">List All</a></li>
+		</ul>
+	</li>
 	<li><a href="<c:url value="/setup/errorMessages/listAll"/>">Error Messages</a></li>
 </sec:authorize>

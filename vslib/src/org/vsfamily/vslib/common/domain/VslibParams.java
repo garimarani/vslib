@@ -22,6 +22,13 @@ public class VslibParams extends VslibBaseClass {
 	private String			edocsFolder;
 	private String			worksFolder;
 	
+	private String			organizationName;
+	private String			organizationAddress;
+	private String			contactName;
+	private String 			contactAddress;
+	private String 			contactEmail;
+	private String			siteUrl;
+	
 	/**
 	 * Gets whether the email communication is enabled or not.
 	 * @return true if enabled, false otherwise
@@ -196,6 +203,102 @@ public class VslibParams extends VslibBaseClass {
 	 */
 	public void setWorksFolder(String worksFolder) {
 		this.worksFolder = worksFolder;
+	}
+
+	/**
+	 * Gets the organization name.
+	 * @return the organization name
+	 */
+	public String getOrganizationName() {
+		return organizationName;
+	}
+
+	/**
+	 * Sets the organization name.
+	 * @param organizationName - the organization name
+	 */
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
+	}
+
+	/**
+	 * Gets the organization address.
+	 * @return the organization address
+	 */
+	public String getOrganizationAddress() {
+		return organizationAddress;
+	}
+
+	/**
+	 * Sets the organization address.
+	 * @param organizationAddress - the organization address
+	 */
+	public void setOrganizationAddress(String organizationAddress) {
+		this.organizationAddress = organizationAddress;
+	}
+
+	/**
+	 * Gets the contact person name.
+	 * @return the contact person name
+	 */
+	public String getContactName() {
+		return contactName;
+	}
+
+	/**
+	 * Sets the contact person name.
+	 * @param contactName - the contact person name
+	 */
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+	
+	/**
+	 * Gets the contact person's address.
+	 * @return the contact person's address
+	 */
+	public String getContactAddress() {
+		return contactAddress;
+	}
+
+	/**
+	 * Sets the contact person's address.
+	 * @param contactAddress - the contact person's address
+	 */
+	public void setContactAddress(String contactAddress) {
+		this.contactAddress = contactAddress;
+	}
+
+	/**
+	 * Gets the contact person's email.
+	 * @return the contact person's email
+	 */
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	/**
+	 * Sets the contact person's email.
+	 * @param contactEmail - the contact person's email
+	 */
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+
+	/**
+	 * Gets the site URL.
+	 * @return the site URL
+	 */
+	public String getSiteUrl() {
+		return siteUrl;
+	}
+
+	/**
+	 * Sets the site URL.
+	 * @param siteUrl - the site URL
+	 */
+	public void setSiteUrl(String siteUrl) {
+		this.siteUrl = siteUrl;
 	}
 	
 }

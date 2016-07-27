@@ -17,6 +17,11 @@
 	</thead>
 	<tbody>
 		<tr>
+			<td>Parameters w.r.t. contact details &amp; organization details.</td>
+			<td><a href="<c:url value="/setup/parameters/contacts"/>">Enter Values</a></td>
+		</tr>
+	</tbody>
+		<tr>
 			<td>Parameters w.r.t. email based services.</td>
 			<td><a href="<c:url value="/setup/parameters/email"/>">Enable/Disable Email</a></td>
 		</tr>

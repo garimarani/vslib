@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping default-lazy="false">
+
+	<class name="org.vsfamily.vslib.common.domain.Adverts" table="org_vsfamily_vslib_adverts">
+		<id name="id" column="f_id" type="long">
+			<generator class="increment" />
+		</id>
+		<property
+			name="name"
+			column="f_name"
+			type="string"
+			not-null="true"
+			unique="true"
+			length="50"
+			/>
+		<property
+			name="location"
+			column="f_location"
+			type="string"
+			not-null="true"
+			length="20"
+			/>
+		<property
+			name="value"
+			column="f_value"
+			type="text"
+			length="1000000000"
+			/>
+		<property
+			name="published"
+			column="f_published"
+			type="boolean"
+			/>
+			
+		<property
+			name="addDate"
+			column="f_add_date"
+			not-null="true"
+			/>
+		<property
+			name="updateDate"
+			column="f_update_date"
+			not-null="true"
+			/>
+		<property 
+			name="recordAddedBy"
+			column="f_record_added_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+		<property 
+			name="recordUpdatedBy"
+			column="f_record_updated_by"
+			type="string"
+			length="20"
+			not-null="true"
+			/>
+	</class>
+</hibernate-mapping>

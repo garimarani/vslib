@@ -32,6 +32,9 @@
 		<security:intercept-url pattern="/circulation" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CIR')"/>
 		<security:intercept-url pattern="/circulation/**/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CIR')"/>
 		
+		<security:intercept-url pattern="/content" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CON')"/>
+		<security:intercept-url pattern="/content/**/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CON')"/>
+		
 		<security:intercept-url pattern="/manager" access="hasAnyRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/manager/**/*" access="hasAnyRole('ROLE_ADMIN')"/>
 		
@@ -41,8 +44,11 @@
 		<security:intercept-url pattern="/report" access="hasAnyRole('ROLE_ADMIN', 'ROLE_REP')"/>
 		<security:intercept-url pattern="/report/**/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_REP')"/>
 		
-		<security:intercept-url pattern="/setup" access="hasAnyRole('ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/setup/**/*" access="hasAnyRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/setup" access="hasAnyRole('ROLE_ADMIN','ROLE_SET')"/>
+		<security:intercept-url pattern="/setup/**/*" access="hasAnyRole('ROLE_ADMIN','ROLE_SET')"/>
+		
+		<security:intercept-url pattern="/managerChangePassword" access="hasAnyRole('ROLE_ADMIN','ROLE_REP','ROLE_CIR','ROLE_CAT','ROLE_ACQ','ROLE_SET')"/>
+		<security:intercept-url pattern="/managerChangePassword/*" access="hasAnyRole('ROLE_ADMIN','ROLE_REP','ROLE_CIR','ROLE_CAT','ROLE_ACQ','ROLE_SET')"/>
 		
 		<security:intercept-url pattern="/login" access="permitAll" requires-channel="http" />
 
@@ -93,6 +99,9 @@
 				<value>hibernate/common/gender.hbm.xml</value>
 				<value>hibernate/common/salutation.hbm.xml</value>
 				
+				<value>hibernate/vslib/adverts.hbm.xml</value>
+				<value>hibernate/vslib/article.hbm.xml</value>
+				<value>hibernate/vslib/articleCategory.hbm.xml</value>
 				<value>hibernate/vslib/document.hbm.xml</value>
 				<value>hibernate/vslib/errorMessages.hbm.xml</value>
 				<value>hibernate/vslib/fineCategory.hbm.xml</value>
@@ -106,6 +115,7 @@
 				<value>hibernate/vslib/library.hbm.xml</value>
 				<value>hibernate/vslib/libraryBranch.hbm.xml</value>
 				<value>hibernate/vslib/libraryType.hbm.xml</value>
+				<value>hibernate/vslib/menuItem.hbm.xml</value>
 				<value>hibernate/vslib/patron.hbm.xml</value>
 				<value>hibernate/vslib/patronCategory.hbm.xml</value>
 				<value>hibernate/vslib/patronGroup.hbm.xml</value>

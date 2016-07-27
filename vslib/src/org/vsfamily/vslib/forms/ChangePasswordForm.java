@@ -7,6 +7,7 @@ public class ChangePasswordForm {
 	
 	private String			password;
 	private String 			changePassword;
+	private String			retypePassword;
 	
 	/**
 	 * Gets the password.
@@ -38,6 +39,22 @@ public class ChangePasswordForm {
 	 */
 	public void setChangePassword(String changePassword) {
 		this.changePassword = changePassword;
+	}
+
+	/**
+	 * Gets the retyped password.
+	 * @return the retyped password
+	 */
+	public String getRetypePassword() {
+		return retypePassword;
+	}
+
+	/**
+	 * Sets the retyped password
+	 * @param retypePassword - the retyped password
+	 */
+	public void setRetypePassword(String retypePassword) {
+		this.retypePassword = retypePassword;
 	}
 	
 }

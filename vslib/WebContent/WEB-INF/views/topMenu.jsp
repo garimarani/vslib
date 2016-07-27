@@ -19,6 +19,9 @@
 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SETUP')">
 	<li><a href="<c:url value="/setup"/>">Setup</a></li>
 </sec:authorize>
+<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CON')">
+	<li><a href="<c:url value="/content"/>">Content</a></li>
+</sec:authorize>
 <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 	<li><a href="<c:url value="/manager"/>">Manager</a></li>
 </sec:authorize>

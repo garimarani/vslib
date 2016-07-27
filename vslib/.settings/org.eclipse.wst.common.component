@@ -9,6 +9,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcCommon"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcReport"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcProfile"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/srcContent"/>
         <property name="context-root" value="vslib"/>
         <property name="java-output-path" value="/vslib/build/classes"/>
     </wb-module>

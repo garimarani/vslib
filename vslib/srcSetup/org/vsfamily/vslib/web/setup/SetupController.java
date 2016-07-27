@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SetupController extends SetupBaseController {
 
 	@RequestMapping(method=RequestMethod.GET)
-	public String setupSefault(Model model){
+	public String setupDefault(Model model){
 		return "setup/default";
 	}
 }

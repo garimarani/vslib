@@ -11,18 +11,18 @@
 <table class="dataTable">
 	<thead>
 		<tr>
-			<th>Documents Retrieved</th>
+			<th style="padding: 10px; margin: 10px;">Documents Retrieved</th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${listItem}" var="lb">
 			<tr>
-				<td>
+				<td style="padding: 10px; margin: 10px;">
 					<b>Title / Series Statement</b>: ${lb.document.uniformTitle} / ${lb.document.seriesStatement} ...<a href="<c:url value="/newArrivals/document/view/${lb.document.id}"/>">View Details</a>
 					<br/><b>Authors</b>: ${lb.document.primaryAuthor} / ${lb.document.secondaryAuthors}
 					<br/><b>Edition</b>: ${lb.document.edition} <b>Publisher</b>: ${lb.document.publisher}
-					<br/><b>Item Details</b>:(${item.barcodeNumber} :-: ${item.classNumber} :-: <c:if test="${empty item.checkOuts}">On-Shelf</c:if>
-							<c:if test="${!empty item.checkOuts}">Checked-Out</c:if>)
+					<br/><b>Item Details</b>:(${lb.barcodeNumber} :-: ${lb.classNumber} :-: <c:if test="${empty lb.checkOuts}">On-Shelf</c:if>
+							<c:if test="${!empty lb.checkOuts}">Checked-Out</c:if>)
 				</td>
 			</tr>
 		</c:forEach>

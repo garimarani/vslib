@@ -1,10 +1,15 @@
 package org.vsfamily.vslib.web.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.vsfamily.vslib.common.domain.Article;
+import org.vsfamily.vslib.web.service.VslibService;
 
 /**
  * Controller for Home module.
@@ -13,8 +18,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/")
 public class VslibIndexController extends VslibBaseController {
 
+	@Autowired
+	VslibService vslibService;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String indexView(Model model) {
+		
+		List<Article> listArticle = this.vslibService.listArticleHomePagePublished();
+		
+		model.addAttribute("listArticle", listArticle);
 
 		return "index";
 	}

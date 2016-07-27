@@ -10,18 +10,23 @@ import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Component;
 import org.vsfamily.vslib.common.VslibBaseDAOImpl;
+import org.vsfamily.vslib.common.domain.Article;
+import org.vsfamily.vslib.common.domain.ArticleCategory;
 import org.vsfamily.vslib.common.domain.Document;
+import org.vsfamily.vslib.common.domain.ErrorMessages;
 import org.vsfamily.vslib.common.domain.Item;
 import org.vsfamily.vslib.common.domain.ItemHold;
 import org.vsfamily.vslib.common.domain.ItemReserve;
 import org.vsfamily.vslib.common.domain.Patron;
 import org.vsfamily.vslib.common.domain.VslibParams;
+import org.vsfamily.vslib.common.tools.VslibPaginate;
 import org.vsfamily.vslib.forms.SimpleSearchForm;
 
 
@@ -52,6 +57,31 @@ public class VslibDAOImpl extends VslibBaseDAOImpl implements VslibDAO {
 	}
 
 	@Override
+	public void doDeleteErrorMessages() {
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_YEAR, -15);
+		try {
+			Criteria crit = this.getSession().createCriteria(ErrorMessages.class);
+			
+			crit.add(Restrictions.lt("addDate", cal));
+			
+			List<?> list = crit.list();
+			
+			for(Object obj : list){
+				ErrorMessages msg = (ErrorMessages) obj;
+				this.getSession().delete(msg);
+			}
+		} catch (Exception e) {
+			logger.info(e);
+			System.out.println(e);
+		} finally {
+			this.getSession().close();
+			this.setSession(this.getSessionFactory().openSession());
+		}
+	}
+
+	@Override
 	public VslibParams getVslibParams() {
 		
 		VslibParams vslibParams = null;
@@ -78,10 +108,14 @@ public class VslibDAOImpl extends VslibBaseDAOImpl implements VslibDAO {
 		return vslibParams;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Item> listNewArrivals() {
-		List<Item> listItem = new ArrayList<Item>();
+	public VslibPaginate listNewArrivals(int firstResult, int maxResults) {
+		VslibPaginate page = new VslibPaginate();
+		
+		List<?> listObject = new ArrayList<Object>();
+		
+		page.setStartResult(firstResult);
+		page.setMaxResult(maxResults);
 		
 		Calendar calStart = Calendar.getInstance();
 		Calendar calEnd = Calendar.getInstance();
@@ -93,12 +127,25 @@ public class VslibDAOImpl extends VslibBaseDAOImpl implements VslibDAO {
 			
 			crit.add(Restrictions.le("addDate", calStart));
 			crit.add(Restrictions.ge("addDate", calEnd));
+						
+			crit.setProjection(Projections.rowCount());
 			
-			crit.createAlias("document", "doc");
+			page.setTotalResult(((Long)crit.uniqueResult()).intValue());
 			
-			crit.addOrder(Order.desc("doc.uniformTitle"));
+			Criteria crit1 = this.getSession().createCriteria(Item.class);
 			
-			listItem = (List<Item>) crit.list();
+			crit1.add(Restrictions.le("addDate", calStart));
+			crit1.add(Restrictions.ge("addDate", calEnd));
+			crit1.createAlias("document", "doc");
+			
+			crit1.addOrder(Order.asc("doc.uniformTitle"));
+			
+			crit1.setFirstResult(firstResult);
+			crit1.setMaxResults(maxResults);
+			
+			listObject = crit1.list();
+			
+			page.setListObject(listObject);
 			
 		} catch (Exception e) {
 			logger.info(e);
@@ -107,7 +154,61 @@ public class VslibDAOImpl extends VslibBaseDAOImpl implements VslibDAO {
 			this.getSession().close();
 			this.setSession(this.getSessionFactory().openSession());
 		}
-		return listItem;
+		return page;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Article> listArticleHomePagePublished() {
+
+		List<Article> listArticle = new ArrayList<Article>();
+		
+		try {
+			
+			Criteria crit = this.getSession().createCriteria(Article.class);
+			
+			crit.add(Restrictions.eq("homePage", true));
+			crit.add(Restrictions.eq("published", true));
+			
+			crit.addOrder(Order.desc("addDate"));
+			
+			listArticle = (List<Article>) crit.list();
+			
+		} catch (Exception e) {
+			logger.info(e);
+			System.out.println(e);
+		} finally {
+			this.getSession().close();
+			this.setSession(this.getSessionFactory().openSession());
+		}
+		return listArticle;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Article> listArticlePublished(ArticleCategory category) {
+
+		List<Article> listArticle = new ArrayList<Article>();
+		
+		try {
+			
+			Criteria crit = this.getSession().createCriteria(Article.class);
+			
+			crit.add(Restrictions.eq("category", category));
+			crit.add(Restrictions.eq("published", true));
+			
+			crit.addOrder(Order.desc("addDate"));
+			
+			listArticle = (List<Article>) crit.list();
+			
+		} catch (Exception e) {
+			logger.info(e);
+			System.out.println(e);
+		} finally {
+			this.getSession().close();
+			this.setSession(this.getSessionFactory().openSession());
+		}
+		return listArticle;
 	}
 
 	@SuppressWarnings("unchecked")

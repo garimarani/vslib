@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.vsfamily.vslib.common.domain.Adverts;
+import org.vsfamily.vslib.common.domain.Article;
+import org.vsfamily.vslib.common.domain.ArticleCategory;
 import org.vsfamily.vslib.common.domain.Document;
 import org.vsfamily.vslib.common.domain.ErrorMessages;
 import org.vsfamily.vslib.common.domain.FineCategory;
@@ -18,12 +21,14 @@ import org.vsfamily.vslib.common.domain.Language;
 import org.vsfamily.vslib.common.domain.Library;
 import org.vsfamily.vslib.common.domain.LibraryBranch;
 import org.vsfamily.vslib.common.domain.LibraryType;
+import org.vsfamily.vslib.common.domain.MenuItem;
 import org.vsfamily.vslib.common.domain.Patron;
 import org.vsfamily.vslib.common.domain.PatronCategory;
 import org.vsfamily.vslib.common.domain.PatronGroup;
 import org.vsfamily.vslib.common.domain.Subject;
 import org.vsfamily.vslib.common.domain.Vendor;
 import org.vsfamily.vslib.common.domain.VslibParams;
+import org.vsfamily.vslib.common.tools.VslibPaginate;
 import org.vsfamily.vslib.forms.CheckOutForm;
 import org.vsfamily.vslib.forms.HoldForm;
 import org.vsfamily.vslib.forms.ReserveForm;
@@ -35,6 +40,21 @@ public class VslibServiceImpl implements VslibService {
 
 	@Autowired
 	VslibDAO vslibDAO;
+
+	@Override
+	public boolean addAdverts(Adverts adverts) {
+		return this.vslibDAO.save(adverts);
+	}
+
+	@Override
+	public boolean addArticle(Article obj) {
+		return this.vslibDAO.save(obj);
+	}
+
+	@Override
+	public boolean addArticleCategory(ArticleCategory obj) {
+		return this.vslibDAO.save(obj);
+	}
 
 	@Override
 	public boolean addDocument(Document obj) {
@@ -107,6 +127,11 @@ public class VslibServiceImpl implements VslibService {
 	}
 
 	@Override
+	public boolean addMenuItem(MenuItem obj) {
+		return this.vslibDAO.save(obj);
+	}
+
+	@Override
 	public boolean addPatron(Patron obj) {
 		return this.vslibDAO.save(obj);
 	}
@@ -134,6 +159,21 @@ public class VslibServiceImpl implements VslibService {
 	@Override
 	public boolean addVslibParams(VslibParams vslibParams) {
 		return this.vslibDAO.saveOrUpdate(vslibParams);
+	}
+
+	@Override
+	public boolean deleteAdverts(Adverts adverts) {
+		return this.vslibDAO.delete(adverts);
+	}
+
+	@Override
+	public boolean deleteArticle(Article obj) {
+		return this.vslibDAO.delete(obj);
+	}
+
+	@Override
+	public boolean deleteArticleCategory(ArticleCategory obj) {
+		return this.vslibDAO.delete(obj);
 	}
 
 	@Override
@@ -202,6 +242,11 @@ public class VslibServiceImpl implements VslibService {
 	}
 
 	@Override
+	public boolean deleteMenuItem(MenuItem obj) {
+		return this.vslibDAO.delete(obj);
+	}
+
+	@Override
 	public boolean deletePatron(Patron obj) {
 		return this.vslibDAO.delete(obj);
 	}
@@ -224,6 +269,31 @@ public class VslibServiceImpl implements VslibService {
 	@Override
 	public boolean deleteVendor(Vendor obj) {
 		return this.vslibDAO.delete(obj);
+	}
+
+	@Override
+	public Adverts getAdverts(Long id) {
+		return (Adverts) this.vslibDAO.getObjectById(Adverts.class, id);
+	}
+
+	@Override
+	public Adverts getAdvertsByName(String name) {
+		return (Adverts) this.vslibDAO.getObjectByArg(Adverts.class, "name", name);
+	}
+
+	@Override
+	public Article getArticle(Long id) {
+		return (Article) this.vslibDAO.getObjectById(Article.class, id);
+	}
+
+	@Override
+	public ArticleCategory getArticleCategory(Long id) {
+		return (ArticleCategory) this.vslibDAO.getObjectById(ArticleCategory.class, id);
+	}
+
+	@Override
+	public ArticleCategory getArticleCategoryByName(String name) {
+		return (ArticleCategory) this.vslibDAO.getObjectByArg(ArticleCategory.class, "name", name);
 	}
 
 	@Override
@@ -367,6 +437,16 @@ public class VslibServiceImpl implements VslibService {
 	}
 
 	@Override
+	public MenuItem getMenuItem(Long id) {
+		return (MenuItem) this.vslibDAO.getObjectById(MenuItem.class, id);
+	}
+
+	@Override
+	public MenuItem getMenuItemByName(String name) {
+		return (MenuItem) this.vslibDAO.getObjectByArg(MenuItem.class, "name", name);
+	}
+
+	@Override
 	public Patron getPatron(Long id) {
 		return (Patron) this.vslibDAO.getObjectById(Patron.class, id);
 	}
@@ -442,8 +522,42 @@ public class VslibServiceImpl implements VslibService {
 	}
 
 	@Override
-	public List<Item> listNewArrivals() {
-		return this.vslibDAO.listNewArrivals();
+	public VslibPaginate listNewArrivals(int firstResult, int maxResults) {
+		return this.vslibDAO.listNewArrivals(firstResult, maxResults);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Adverts> listAdverts() {
+		return (List<Adverts>) this.vslibDAO.listObjectSorted(Adverts.class, "name", "asc");
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Adverts> listAdverts(String location) {
+		return (List<Adverts>) this.vslibDAO.listObjectArgSorted(Adverts.class, "location", location, "name", "asc");
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Article> listArticle() {
+		return (List<Article>) this.vslibDAO.listObjectSorted(Article.class, "addDate", "desc");
+	}
+
+	@Override
+	public List<Article> listArticleHomePagePublished() {
+		return this.vslibDAO.listArticleHomePagePublished();
+	}
+
+	@Override
+	public List<Article> listArticlePublished(ArticleCategory category) {
+		return this.vslibDAO.listArticlePublished(category);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ArticleCategory> listArticleCategory() {
+		return (List<ArticleCategory>) this.vslibDAO.listObjectSorted(ArticleCategory.class, "name", "asc");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -568,6 +682,18 @@ public class VslibServiceImpl implements VslibService {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<MenuItem> listMenuItem() {
+		return (List<MenuItem>) this.vslibDAO.listObjectSorted(MenuItem.class, "name", "asc");
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuItem> listMenuItemPublished() {
+		return (List<MenuItem>) this.vslibDAO.listObjectArgSorted(MenuItem.class, "published", true, "name", "asc");
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<Patron> listPatronSortByName() {
 		return (List<Patron>) this.vslibDAO.listObjectSorted(Patron.class, "name", "asc");
 	}
@@ -636,6 +762,21 @@ public class VslibServiceImpl implements VslibService {
 	}
 
 	@Override
+	public boolean updateAdverts(Adverts obj) {
+		return this.vslibDAO.update(obj);
+	}
+
+	@Override
+	public boolean updateArticle(Article obj) {
+		return this.vslibDAO.update(obj);
+	}
+
+	@Override
+	public boolean updateArticleCategory(ArticleCategory obj) {
+		return this.vslibDAO.update(obj);
+	}
+
+	@Override
 	public boolean updateDocument(Document obj) {
 		return this.vslibDAO.update(obj);
 	}
@@ -697,6 +838,11 @@ public class VslibServiceImpl implements VslibService {
 
 	@Override
 	public boolean updateLibraryType(LibraryType obj) {
+		return this.vslibDAO.update(obj);
+	}
+
+	@Override
+	public boolean updateMenuItem(MenuItem obj) {
 		return this.vslibDAO.update(obj);
 	}
 
@@ -812,6 +958,11 @@ public class VslibServiceImpl implements VslibService {
 			checkOutForm.setMessage("Item could not be checked out.");
 		}
 		return checkOutForm;
+	}
+
+	@Override
+	public void doDeleteErrorMessages() {
+		this.vslibDAO.doDeleteErrorMessages();
 	}
 
 	@Override

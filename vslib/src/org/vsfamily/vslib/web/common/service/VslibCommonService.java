@@ -12,7 +12,7 @@ import org.vsfamily.common.domain.Salutation;
 public interface VslibCommonService {
 
 	/**
-	 * Adds the address object of the database.
+	 * Adds the address object to the database.
 	 * @param address - the address object
 	 * @return true on success, false otherwise
 	 */

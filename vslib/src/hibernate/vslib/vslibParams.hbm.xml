@@ -74,6 +74,44 @@
 			length="255"
 			/>
 			
+			
+		<property
+			name="organizationName"
+			column="f_organization_name"
+			type="string"
+			length="255"
+			/>
+		<property
+			name="organizationAddress"
+			column="f_organization_address"
+			type="string"
+			length="255"
+			/>
+		<property
+			name="contactName"
+			column="f_contact_name"
+			type="string"
+			length="255"
+			/>
+		<property
+			name="contactAddress"
+			column="f_contact_address"
+			type="string"
+			length="255"
+			/>
+		<property
+			name="contactEmail"
+			column="f_contact_email"
+			type="string"
+			length="255"
+			/>
+		<property
+			name="siteUrl"
+			column="f_site_url"
+			type="string"
+			length="255"
+			/>
+			
 		<property
 			name="addDate"
 			column="f_add_date"

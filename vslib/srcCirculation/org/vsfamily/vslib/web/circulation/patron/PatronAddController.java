@@ -73,6 +73,8 @@ public class PatronAddController extends CirculationBaseController {
 			return "circulation/patron/patron";
 		}
 		
+		String password = patron.getPassword();
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String hashedPass = encoder.encode(patron.getPassword());
 		
@@ -82,6 +84,7 @@ public class PatronAddController extends CirculationBaseController {
 		
 		if (this.vslibService.addPatron(patron)){
 			reat.addFlashAttribute("message", "Patron record added successfully.");
+			this.getCirculationEmailMessages().sendPatronRegistrationMessage(patron, password);
 			return "redirect:/circulation/patron/view/" + patron.getId().toString();
 		} else {
 			reat.addFlashAttribute("message", "Patron record not added.");

@@ -28,6 +28,9 @@ import org.vsfamily.vslib.web.manager.propertEditors.StringToVslibGroup;
 import org.vsfamily.vslib.web.manager.propertEditors.StringToVslibRole;
 import org.vsfamily.vslib.web.manager.propertEditors.VslibGroupToString;
 import org.vsfamily.vslib.web.manager.propertEditors.VslibRoleToString;
+import org.vsfamily.vslib.web.propertyEditors.objectToString.AdvertsToString;
+import org.vsfamily.vslib.web.propertyEditors.objectToString.ArticleCategoryToString;
+import org.vsfamily.vslib.web.propertyEditors.objectToString.ArticleToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.DocumentToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.FineCategoryToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.ItemCheckInToString;
@@ -40,11 +43,15 @@ import org.vsfamily.vslib.web.propertyEditors.objectToString.LanguageToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.LibraryBranchToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.LibraryToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.LibraryTypeToString;
+import org.vsfamily.vslib.web.propertyEditors.objectToString.MenuItemToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.PatronCategoryToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.PatronGroupToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.PatronToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.SubjectToString;
 import org.vsfamily.vslib.web.propertyEditors.objectToString.VendorToString;
+import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToAdverts;
+import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToArticle;
+import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToArticleCategory;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToDocument;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToFineCategory;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToItem;
@@ -57,6 +64,7 @@ import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToLanguage;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToLibrary;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToLibraryBranch;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToLibraryType;
+import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToMenuItem;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToPatron;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToPatronCategory;
 import org.vsfamily.vslib.web.propertyEditors.stringToObject.StringToPatronGroup;
@@ -143,7 +151,7 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 		
 		CommonsMultipartResolver cmr = new CommonsMultipartResolver();
 		
-		cmr.setMaxUploadSize(500000);
+		cmr.setMaxUploadSize(50000000);
 		
 		return cmr;
 	}
@@ -162,6 +170,9 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 		registry.addConverter(this.getStringToGender());
 		registry.addConverter(this.getStringToSalutation());
 		
+		registry.addConverter(this.getAdvertsToString());
+		registry.addConverter(this.getArticleCategoryToString());
+		registry.addConverter(this.getArticleToString());
 		registry.addConverter(this.getDocumentToString());
 		registry.addConverter(this.getFineCategoryToString());
 		registry.addConverter(this.getItemCheckInToString());
@@ -174,12 +185,16 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 		registry.addConverter(this.getLibraryBranchToString());
 		registry.addConverter(this.getLibraryToString());
 		registry.addConverter(this.getLibraryTypeToString());
+		registry.addConverter(this.getMenuItemToString());
 		registry.addConverter(this.getPatronCategoryToString());
 		registry.addConverter(this.getPatronGroupToString());
 		registry.addConverter(this.getPatronToString());
 		registry.addConverter(this.getSubjectToString());
 		registry.addConverter(this.getVendorToString());
 		
+		registry.addConverter(this.getStringToAdverts());
+		registry.addConverter(this.getStringToArticle());
+		registry.addConverter(this.getStringToArticleCategory());
 		registry.addConverter(this.getStringToDocument());
 		registry.addConverter(this.getStringToFineCategory());
 		registry.addConverter(this.getStringToItem());
@@ -192,6 +207,7 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 		registry.addConverter(this.getStringToLibrary());
 		registry.addConverter(this.getStringToLibraryBranch());
 		registry.addConverter(this.getStringToLibraryType());
+		registry.addConverter(this.getStringToMenuItem());
 		registry.addConverter(this.getStringToPatron());
 		registry.addConverter(this.getStringToPatronCategory());
 		registry.addConverter(this.getStringToPatronGroup());
@@ -209,6 +225,21 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 	@Bean
 	public AddressToString getAddressToString(){
 		return new AddressToString();
+	}
+	
+	@Bean
+	public AdvertsToString getAdvertsToString(){
+		return new AdvertsToString();
+	}
+	
+	@Bean
+	public ArticleToString getArticleToString(){
+		return new ArticleToString();
+	}
+	
+	@Bean
+	public ArticleCategoryToString getArticleCategoryToString(){
+		return new ArticleCategoryToString();
 	}
 	
 	@Bean
@@ -297,6 +328,11 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean
+	public MenuItemToString getMenuItemToString(){
+		return new MenuItemToString();
+	}
+		
+	@Bean
 	public PatronToString getPatronToString(){
 		return new PatronToString();
 	}
@@ -324,6 +360,21 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 	@Bean
 	public StringToAddress getStringToAddress(){
 		return new StringToAddress();
+	}
+	
+	@Bean
+	public StringToAdverts getStringToAdverts(){
+		return new StringToAdverts();
+	}
+	
+	@Bean
+	public StringToArticle getStringToArticle(){
+		return new StringToArticle();
+	}
+	
+	@Bean
+	public StringToArticleCategory getStringToArticleCategory(){
+		return new StringToArticleCategory();
 	}
 	
 	@Bean
@@ -409,6 +460,11 @@ public class VslibContextConfiguration  extends WebMvcConfigurerAdapter {
 	@Bean
 	public StringToLibraryType getStringToLibraryType(){
 		return new StringToLibraryType();
+	}
+	
+	@Bean
+	public StringToMenuItem getStringToMenuItem(){
+		return new StringToMenuItem();
 	}
 	
 	@Bean

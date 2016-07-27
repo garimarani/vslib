@@ -2,6 +2,9 @@ package org.vsfamily.vslib.web.service;
 
 import java.util.List;
 
+import org.vsfamily.vslib.common.domain.Adverts;
+import org.vsfamily.vslib.common.domain.Article;
+import org.vsfamily.vslib.common.domain.ArticleCategory;
 import org.vsfamily.vslib.common.domain.Document;
 import org.vsfamily.vslib.common.domain.ErrorMessages;
 import org.vsfamily.vslib.common.domain.FineCategory;
@@ -15,12 +18,14 @@ import org.vsfamily.vslib.common.domain.Language;
 import org.vsfamily.vslib.common.domain.Library;
 import org.vsfamily.vslib.common.domain.LibraryBranch;
 import org.vsfamily.vslib.common.domain.LibraryType;
+import org.vsfamily.vslib.common.domain.MenuItem;
 import org.vsfamily.vslib.common.domain.Patron;
 import org.vsfamily.vslib.common.domain.PatronCategory;
 import org.vsfamily.vslib.common.domain.PatronGroup;
 import org.vsfamily.vslib.common.domain.Subject;
 import org.vsfamily.vslib.common.domain.Vendor;
 import org.vsfamily.vslib.common.domain.VslibParams;
+import org.vsfamily.vslib.common.tools.VslibPaginate;
 import org.vsfamily.vslib.forms.CheckOutForm;
 import org.vsfamily.vslib.forms.HoldForm;
 import org.vsfamily.vslib.forms.ReserveForm;
@@ -28,6 +33,15 @@ import org.vsfamily.vslib.forms.SimpleSearchForm;
 
 public interface VslibService {
 
+	/**
+	 * Adds the adverts object to the database.
+	 * @param adverts - the adverts object
+	 * @return true on success, false otherwise
+	 */
+	public boolean							addAdverts(Adverts obj);
+	public boolean							addArticle(Article obj);
+	public boolean							addArticleCategory(ArticleCategory obj);
+	
 	public boolean							addDocument(Document obj);
 	public boolean							addDocumentItem(Document document, Item item);
 	public boolean							addErrorMessages(ErrorMessages obj);
@@ -42,12 +56,22 @@ public interface VslibService {
 	public boolean							addLibrary(Library obj);
 	public boolean							addLibraryBranch(LibraryBranch obj);
 	public boolean							addLibraryType(LibraryType obj);
+	public boolean							addMenuItem(MenuItem obj);
 	public boolean							addPatron(Patron obj);
 	public boolean							addPatronCategory(PatronCategory obj);
 	public boolean							addPatronGroup(PatronGroup obj);
 	public boolean							addSubject(Subject obj);
 	public boolean							addVendor(Vendor obj);
 	public boolean							addVslibParams(VslibParams vslibParams);
+	
+	/**
+	 * Deletes the adverts object from the database.
+	 * @param adverts - the adverts object
+	 * @return true on success, false otherwise.
+	 */
+	public boolean							deleteAdverts(Adverts adverts);
+	public boolean							deleteArticle(Article obj);
+	public boolean							deleteArticleCategory(ArticleCategory obj);
 	
 	public boolean							deleteDocument(Document obj);
 	public boolean							deleteErrorMessages(ErrorMessages obj);
@@ -62,11 +86,24 @@ public interface VslibService {
 	public boolean							deleteLibrary(Library obj);
 	public boolean							deleteLibraryBranch(LibraryBranch obj);
 	public boolean							deleteLibraryType(LibraryType obj);
+	public boolean							deleteMenuItem(MenuItem obj);
 	public boolean							deletePatron(Patron obj);
 	public boolean							deletePatronCategory(PatronCategory obj);
 	public boolean							deletePatronGroup(PatronGroup obj);
 	public boolean							deleteSubject(Subject obj);
 	public boolean							deleteVendor(Vendor obj);
+	
+	/**
+	 * Gets the adverts object for the given id.
+	 * @param id - the object id
+	 * @return the object
+	 */
+	public Adverts							getAdverts(Long id);
+	public Adverts							getAdvertsByName(String name);
+	
+	public Article							getArticle(Long id);
+	public ArticleCategory					getArticleCategory(Long id);
+	public ArticleCategory					getArticleCategoryByName(String name);
 	
 	public Document							getDocument(Long id);
 	public ErrorMessages					getErrorMessages(Long id);
@@ -96,6 +133,8 @@ public interface VslibService {
 	public LibraryType						getLibraryType(Long id);
 	public LibraryType						getLibraryTypeByCode(String code);
 	public LibraryType						getLibraryTypeByName(String name);
+	public MenuItem							getMenuItem(Long id);
+	public MenuItem							getMenuItemByName(String name);
 	public Patron							getPatron(Long id);
 	public Patron							getPatronByNumber(String number);
 	public Patron							getPatronByLoginId(String loginId);
@@ -112,7 +151,14 @@ public interface VslibService {
 	public Vendor							getVendorByCode(String code);
 	public VslibParams						getVslibParams();
 	
-	public List<Item>						listNewArrivals();
+	public VslibPaginate					listNewArrivals(int firstResult, int maxResults);
+	
+	public List<Adverts>					listAdverts();
+	public List<Adverts>					listAdverts(String location);
+	public List<Article>					listArticle();
+	public List<Article>					listArticleHomePagePublished();
+	public List<Article>					listArticlePublished(ArticleCategory category);
+	public List<ArticleCategory>			listArticleCategory();
 	public List<Document>					listDocumentSortByPrimaryAuthor();
 	public List<Document>					listDocumentSortByUniformTitle();
 	public List<ErrorMessages>				listErrorMessages();
@@ -133,6 +179,8 @@ public interface VslibService {
 	public List<LibraryBranch>				listLibraryBranch();
 	public List<LibraryBranch>				listLibraryBranchByLibrary(Library library);
 	public List<LibraryType>				listLibraryType();
+	public List<MenuItem>					listMenuItem();
+	public List<MenuItem>					listMenuItemPublished();
 	public List<Patron>						listPatronSortByName();
 	public List<Patron>						listPatronSortByNumber();
 	public List<Patron>						listPatronByCategory();
@@ -147,6 +195,9 @@ public interface VslibService {
 	public List<Document>					searchDocumentSimpleLucene(SimpleSearchForm ssf);
 	public List<Patron>						searchPatron(SimpleSearchForm ssf);
 	
+	public boolean							updateAdverts(Adverts obj);
+	public boolean							updateArticle(Article obj);
+	public boolean							updateArticleCategory(ArticleCategory obj);
 	public boolean							updateDocument(Document obj);
 	public boolean							updateErrorMessages(ErrorMessages obj);
 	public boolean							updateFineCategory(FineCategory obj);
@@ -160,6 +211,7 @@ public interface VslibService {
 	public boolean							updateLibrary(Library obj);
 	public boolean							updateLibraryBranch(LibraryBranch obj);
 	public boolean							updateLibraryType(LibraryType obj);
+	public boolean							updateMenuItem(MenuItem obj);
 	public boolean							updatePatron(Patron obj);
 	public boolean							updatePatronCategory(PatronCategory obj);
 	public boolean							updatePatronGroup(PatronGroup obj);
@@ -167,6 +219,7 @@ public interface VslibService {
 	public boolean							updateVendor(Vendor obj);
 	
 	public CheckOutForm						doCheckOut(CheckOutForm checkOutForm);
+	public void								doDeleteErrorMessages();
 	public HoldForm							doHold(HoldForm holdForm);
 	public ReserveForm						doReserve(ReserveForm reserveForm);
 	public boolean							doReleaseHold();

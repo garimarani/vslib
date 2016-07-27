@@ -2,6 +2,8 @@ package org.vsfamily.vslib.common;
 
 import java.util.List;
 
+import org.vsfamily.vslib.common.tools.VslibPaginate;
+
 /**
  * Base DAO class, used for accessing data from the database. All the DAO classes of the
  * VSLib software are an extension of this class. 
@@ -119,6 +121,8 @@ public interface VslibBaseDAO {
 	 * @return the list of objects or an empty list (if there are no matching objects in the repository)
 	 */
 	public List<?> 			listObjectSorted(Class<?> className, String sortBy, String sortOrder, int firstResult, int maxResults);
+	
+	public VslibPaginate	listObjectSortedPaginate(Class<?> className, String sortBy, String sortOrder, int firstResult, int maxResults);
 	
 	/**
 	 * Retrieve the sorted list of objects from the database based on one of its property.

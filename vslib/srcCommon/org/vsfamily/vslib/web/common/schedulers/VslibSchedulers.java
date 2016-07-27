@@ -17,4 +17,12 @@ public class VslibSchedulers {
 		this.vslibService.doReleaseHold();
 		this.vslibService.doReleaseReserve();
 	}
+	
+	@Scheduled(fixedDelay=86400000)
+	public void deleteErrorMessages(){
+		
+		System.out.println("Deleting error messages that were generated prior to 15 days.");
+		
+		this.vslibService.doDeleteErrorMessages();
+	}
 }

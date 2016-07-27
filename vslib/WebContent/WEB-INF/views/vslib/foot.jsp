@@ -26,6 +26,10 @@
 				<ul id="leftmenu">
 					<jsp:include page="/WEB-INF/views/${viewLeftMenu}.jsp" />
 				</ul>
+				<br/>
+				<c:forEach items="${listLeftAdverts}" var="lb">
+					<c:out value="${lb.value}" escapeXml="false"/>
+				</c:forEach>
 			</div><br/>
 		</aside><!-- #sideLeft -->
 
@@ -35,6 +39,10 @@
 		<hr style="width: 200px; float: right;"/>
 		<div class="copyright" style="float: right; margin-right: -150px; margin-top: 10px">
 			&copy; <fmt:message key="copyright"/>
+			<br/>
+			<c:forEach items="${listBottomAdverts}" var="lb">
+				<c:out value="${lb.value}" escapeXml="false"/>
+			</c:forEach>
 		</div>
 	</footer><!-- #footer -->
 

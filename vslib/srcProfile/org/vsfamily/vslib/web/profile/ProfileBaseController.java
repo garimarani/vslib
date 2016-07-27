@@ -1,11 +1,12 @@
 package org.vsfamily.vslib.web.profile;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.vsfamily.vslib.web.controller.VslibBaseController;
 
 /**
  * Base controller used by other controllers handling profile related services.
  */
-public class ProfileBaseController {
+public class ProfileBaseController extends VslibBaseController {
 
 	/**
 	 * Gets the leftMenu file name.

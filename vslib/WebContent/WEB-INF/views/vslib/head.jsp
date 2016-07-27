@@ -45,14 +45,18 @@
 <div id="wrapper">
 
 	<header id="header">
-		<table style="padding: 0px; margin: 0px">
+		<table style="padding: 0px; margin: 0px; width: 100%;">
 			<tr>
-				<td>
+				<td style="width: 80px;">
 					<img src="<c:url value="/images/vslib-logo.png"/>" width="75px;"/>
 				</td>
 				<td>
 					<h1 style="font-size: 16px;"><fmt:message key="header"/></h1>
 					<span style="font-size:12px;"><fmt:message key="sub-header"/></span>
+				</td>
+				<td style="text-align: right;">
+					<h1 style="font-size: 14px;">${vslibParams.organizationName}</h1>
+					<span style="font-size: 12px;">${vslibParams.organizationAddress}</span>
 				</td>
 			</tr>
 		</table>	
